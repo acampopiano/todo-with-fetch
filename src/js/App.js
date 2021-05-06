@@ -11,6 +11,19 @@ const App = () => {
 		{ label: "Cambiar las ventanas", done: false },
 		{ label: "Lijar la puerta", done: false }
 	]);
+
+	const handleKeyPress = e => {
+		if (e.target.value !== "" && e.charCode === 13) {
+			let newTodo = {
+				label: addToDo,
+				done: false
+			};
+			let newToDoList = [...todoList, newTodo];
+			setTodoList(newToDoList);
+			e.target.value = "";
+		}
+	};
+
 	return (
 		<div className="container">
 			<header className="text-center text-light my-4">
@@ -18,7 +31,10 @@ const App = () => {
 				<SearchForm />
 			</header>
 			<div className="wrapper">
-				<TodoForm setAddToDo={setAddToDo} />
+				<TodoForm
+					setAddToDo={setAddToDo}
+					handleKeyPress={handleKeyPress}
+				/>
 				<Tasks data={todoList} />
 			</div>
 		</div>

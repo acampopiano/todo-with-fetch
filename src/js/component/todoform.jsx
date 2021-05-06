@@ -12,6 +12,7 @@ export const TodoForm = props => {
 					onChange={e => {
 						props.setAddToDo(e.target.value);
 					}}
+					onKeyPress={props.handleKeyPress}
 				/>
 			</form>
 		</>
@@ -19,5 +20,6 @@ export const TodoForm = props => {
 };
 
 TodoForm.propTypes = {
-	setAddToDo: PropTypes.func
+	setAddToDo: PropTypes.func,
+	handleKeyPress: PropTypes.func
 };

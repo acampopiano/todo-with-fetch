@@ -34,7 +34,12 @@ input[type=text]:focus{
 }
 .todos li{
   background: #252526;
+  cursor: pointer;
 }
+.todos li:hover{
+  background: #352f5b;
+}
+
 .delete{
   cursor: pointer;
 }
