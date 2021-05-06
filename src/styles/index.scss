@@ -11,3 +11,33 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body{
+  background: #252526;
+}
+.container{
+  max-width: 400px;
+}
+.wrapper {
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+input[type=text],
+input[type=text]:focus{
+  color: #fff;
+  border: none;
+  background: rgba(0,0,0,0.2);
+  max-width: 400px;
+}
+.todos li{
+  background: #252526;
+}
+.delete{
+  cursor: pointer;
+}
+.filtered {
+  display:none !important;
+}
