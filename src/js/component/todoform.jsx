@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-export const TodoForm = () => {
+export const TodoForm = props => {
 	return (
 		<>
 			<form className="add text-center my-4">
-				<label className="text-dark">Add a new task...</label>
+				<label className="text-dark">Add a new ToDo...</label>
 				<input
 					className="form-control m-auto"
 					type="text"
 					name="add"
 					onChange={e => {
-						props.setAddTask(e.target.value);
+						props.setAddToDo(e.target.value);
 					}}
 				/>
 			</form>
@@ -19,5 +19,5 @@ export const TodoForm = () => {
 };
 
 TodoForm.propTypes = {
-	setAddTask: PropTypes.func
+	setAddToDo: PropTypes.func
 };

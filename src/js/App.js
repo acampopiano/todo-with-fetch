@@ -4,8 +4,13 @@ import { TodoForm } from "./component/todoform.jsx";
 import { Tasks } from "./component/tasks.jsx";
 //create your first component
 const App = () => {
-	const [addTask, setAddTask] = useState("");
-
+	const [addToDo, setAddToDo] = useState("");
+	const [todoList, setTodoList] = useState([
+		{ label: "Pintar la casa", done: false },
+		{ label: "Cambiar las tejas", done: false },
+		{ label: "Cambiar las ventanas", done: false },
+		{ label: "Lijar la puerta", done: false }
+	]);
 	return (
 		<div className="container">
 			<header className="text-center text-light my-4">
@@ -13,8 +18,8 @@ const App = () => {
 				<SearchForm />
 			</header>
 			<div className="wrapper">
-				<TodoForm setAddTask={setAddTask} />
-				<Tasks />
+				<TodoForm setAddToDo={setAddToDo} />
+				<Tasks data={todoList} />
 			</div>
 		</div>
 	);
