@@ -4,18 +4,29 @@ import { TodoForm } from "./component/todoform.jsx";
 import { Tasks } from "./component/tasks.jsx";
 //create your first component
 const App = () => {
+	const tasksURL =
+		"https://assets.breatheco.de/apis/fake/todos/user/acampopiano";
 	const todos = useRef(null);
-	const [todoList, setTodoList] = useState([
-		{ label: "Pintar la casa", done: false },
-		{ label: "Cambiar las tejas", done: false },
-		{ label: "Cambiar las ventanas", done: false },
-		{ label: "Lijar la puerta", done: false }
-	]);
+	const [todoList, setTodoList] = useState();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch(tasksURL);
+				const responseJson = await response.json();
+				setTodoList(responseJson);
+			} catch (e) {
+				//console.error(e);
+			}
+		};
+		fetchData();
+	}, []);
 
 	const deleteItem = e => {
 		const elementToDelete = e.previousElementSibling.textContent;
 		let filter = todoList.filter(d => d.label !== elementToDelete);
 		setTodoList(filter);
+		updateData(filter);
 	};
 
 	const validateForm = e => {
@@ -49,8 +60,25 @@ const App = () => {
 			};
 			let newToDoList = [...todoList, newTodo];
 			setTodoList(newToDoList);
+			updateData(newToDoList);
 			e.target.value = "";
 		}
+	};
+
+	const updateData = updatedList => {
+		let updatedListToSend = JSON.stringify(updatedList);
+		let options = {
+			method: "PUT",
+			body: updatedListToSend,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		};
+
+		fetch(tasksURL, options)
+			.then(resp => resp.json())
+			.then(data => console.log(data))
+			.catch(error => console.log(error));
 	};
 
 	return (
