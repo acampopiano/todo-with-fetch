@@ -22,7 +22,7 @@ const App = () => {
 		e.preventDefault();
 	};
 
-	const handleKeyPressSearch = e => {
+	const handleKeyUp = e => {
 		if (e.target.value !== "") {
 			const term = e.target.value.trim().toLowerCase();
 			filterTodo(term);
@@ -40,6 +40,7 @@ const App = () => {
 			.filter(todo => todo.textContent.toLowerCase().includes(term))
 			.forEach(todo => todo.classList.remove("filtered"));
 	};
+
 	const handleKeyPress = e => {
 		if (e.target.value !== "" && e.charCode === 13) {
 			let newTodo = {
@@ -56,7 +57,7 @@ const App = () => {
 		<div className="container">
 			<header className="text-center text-light my-4">
 				<h1 className="mb-4">Todo List</h1>
-				<SearchForm handleKeyPress={handleKeyPressSearch} />
+				<SearchForm handleKeyUp={handleKeyUp} />
 			</header>
 			<div className="wrapper">
 				<TodoForm

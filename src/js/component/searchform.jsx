@@ -9,7 +9,7 @@ export const SearchForm = props => {
 					type="text"
 					name="search"
 					placeholder="search in ToDo list"
-					onKeyUp={props.handleKeyPress}
+					onKeyUp={props.handleKeyUp}
 				/>
 			</form>
 		</>
@@ -17,5 +17,5 @@ export const SearchForm = props => {
 };
 
 SearchForm.propTypes = {
-	handleKeyPress: PropTypes.func
+	handleKeyUp: PropTypes.func
 };
