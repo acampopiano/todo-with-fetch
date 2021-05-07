@@ -22,6 +22,17 @@ const App = () => {
 		fetchData();
 	}, []);
 
+	const doneItem = e => {
+		const filter = todoList.filter(d => d.label !== e);
+		const filterToUpdate = todoList.filter(d => d.label === e);
+		filterToUpdate.map((item, i) => {
+			item.done = true;
+		});
+		const newToDoList = [...new Set([...filter, ...filterToUpdate])]; //   => remove duplication
+		setTodoList(newToDoList);
+		updateData(newToDoList);
+	};
+
 	const deleteItem = e => {
 		const elementToDelete = e.previousElementSibling.textContent;
 		let filter = todoList.filter(d => d.label !== elementToDelete);
@@ -92,7 +103,12 @@ const App = () => {
 					handleKeyPress={handleKeyPress}
 					validateForm={validateForm}
 				/>
-				<Tasks data={todoList} deleteItem={deleteItem} refer={todos} />
+				<Tasks
+					data={todoList}
+					setDoneItem={doneItem}
+					deleteItem={deleteItem}
+					refer={todos}
+				/>
 			</div>
 		</div>
 	);
