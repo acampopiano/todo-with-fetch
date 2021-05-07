@@ -11,9 +11,6 @@ export const TodoForm = props => {
 					className="form-control m-auto"
 					type="text"
 					name="add"
-					onChange={e => {
-						props.setAddToDo(e.target.value);
-					}}
 					onKeyPress={props.handleKeyPress}
 				/>
 			</form>
@@ -22,7 +19,6 @@ export const TodoForm = props => {
 };
 
 TodoForm.propTypes = {
-	setAddToDo: PropTypes.func,
 	handleKeyPress: PropTypes.func,
 	validateForm: PropTypes.func
 };

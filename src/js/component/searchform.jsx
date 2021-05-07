@@ -9,9 +9,6 @@ export const SearchForm = props => {
 					type="text"
 					name="search"
 					placeholder="search in ToDo list"
-					onChange={e => {
-						props.setSearchToDo(e.target.value);
-					}}
 					onKeyPress={props.handleKeyPress}
 				/>
 			</form>
@@ -20,6 +17,5 @@ export const SearchForm = props => {
 };
 
 SearchForm.propTypes = {
-	setSearchToDo: PropTypes.func,
 	handleKeyPress: PropTypes.func
 };

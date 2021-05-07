@@ -27,7 +27,7 @@ const App = () => {
 
 	const handleKeyPressSearch = e => {
 		if (e.target.value !== "") {
-			const term = searchToDo.trim().toLowerCase();
+			const term = e.target.vallue.trim().toLowerCase();
 			filterTodo(term);
 		}
 	};
@@ -46,7 +46,7 @@ const App = () => {
 	const handleKeyPress = e => {
 		if (e.target.value !== "" && e.charCode === 13) {
 			let newTodo = {
-				label: addToDo,
+				label: e.target.value,
 				done: false
 			};
 			let newToDoList = [...todoList, newTodo];
@@ -59,14 +59,10 @@ const App = () => {
 		<div className="container">
 			<header className="text-center text-light my-4">
 				<h1 className="mb-4">Todo List</h1>
-				<SearchForm
-					setSearchToDo={setSearchToDo}
-					handleKeyPress={handleKeyPressSearch}
-				/>
+				<SearchForm handleKeyPress={handleKeyPressSearch} />
 			</header>
 			<div className="wrapper">
 				<TodoForm
-					setAddToDo={setAddToDo}
 					handleKeyPress={handleKeyPress}
 					validateForm={validateForm}
 				/>
