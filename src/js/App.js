@@ -5,6 +5,7 @@ import { Tasks } from "./component/tasks.jsx";
 //create your first component
 const App = () => {
 	const [addToDo, setAddToDo] = useState("");
+	const [delToDo, setDelToDo] = useState("");
 	const [todoList, setTodoList] = useState([
 		{ label: "Pintar la casa", done: false },
 		{ label: "Cambiar las tejas", done: false },
@@ -12,6 +13,26 @@ const App = () => {
 		{ label: "Lijar la puerta", done: false }
 	]);
 
+	const removeItem = (arr, item) => {
+		var index = arr.indexOf(item);
+		return [
+			// part of the array before the given item
+			...arr.slice(0, index),
+
+			// part of the array after the given item
+			...arr.slice(index + 1)
+		];
+	};
+	const deleteItem = e => {
+		const elementToDelete = e.previousElementSibling.textContent;
+		removeItem(todoList, elementToDelete);
+		e.parentElement.remove();
+		console.log(todoList);
+	};
+
+	const validateForm = e => {
+		e.preventDefault();
+	};
 	const handleKeyPress = e => {
 		if (e.target.value !== "" && e.charCode === 13) {
 			let newTodo = {
@@ -34,8 +55,9 @@ const App = () => {
 				<TodoForm
 					setAddToDo={setAddToDo}
 					handleKeyPress={handleKeyPress}
+					validateForm={validateForm}
 				/>
-				<Tasks data={todoList} />
+				<Tasks data={todoList} deleteItem={deleteItem} />
 			</div>
 		</div>
 	);

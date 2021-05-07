@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 export const TodoForm = props => {
 	return (
 		<>
-			<form className="add text-center my-4">
+			<form
+				onSubmit={props.validateForm}
+				className="add text-center my-4">
 				<label className="text-dark">Add a new ToDo...</label>
 				<input
 					className="form-control m-auto"
@@ -21,5 +23,6 @@ export const TodoForm = props => {
 
 TodoForm.propTypes = {
 	setAddToDo: PropTypes.func,
-	handleKeyPress: PropTypes.func
+	handleKeyPress: PropTypes.func,
+	validateForm: PropTypes.func
 };

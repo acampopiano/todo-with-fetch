@@ -10,7 +10,11 @@ export const Tasks = props => {
 								key={`${i}`}
 								className="list-group-item d-flex justify-content-between align-items-center">
 								<span>{item.label}</span>
-								<span className="delete">×</span>
+								<span
+									className="delete"
+									onClick={e => props.deleteItem(e.target)}>
+									×
+								</span>
 							</li>
 					  ))
 					: "Loading..."}
@@ -20,5 +24,6 @@ export const Tasks = props => {
 };
 
 Tasks.propTypes = {
-	data: PropTypes.array
+	data: PropTypes.array,
+	deleteItem: PropTypes.func
 };
