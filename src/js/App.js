@@ -6,6 +6,8 @@ import { Tasks } from "./component/tasks.jsx";
 const App = () => {
 	const [addToDo, setAddToDo] = useState("");
 	const [delToDo, setDelToDo] = useState("");
+	const [searchToDo, setSearchToDo] = useState("");
+	const todos = useRef(null);
 	const [todoList, setTodoList] = useState([
 		{ label: "Pintar la casa", done: false },
 		{ label: "Cambiar las tejas", done: false },
@@ -17,11 +19,29 @@ const App = () => {
 		const elementToDelete = e.previousElementSibling.textContent;
 		let filter = todoList.filter(d => d.label !== elementToDelete);
 		setTodoList(filter);
-		e.parentElement.remove();
 	};
 
 	const validateForm = e => {
 		e.preventDefault();
+	};
+
+	const handleKeyPressSearch = e => {
+		if (e.target.value !== "") {
+			const term = searchToDo.trim().toLowerCase();
+			filterTodo(term);
+		}
+	};
+
+	// filter todos
+	const filterTodo = term => {
+		const node = todos.current;
+		Array.from(node.children)
+			.filter(todo => !todo.textContent.toLowerCase().includes(term))
+			.forEach(todo => todo.classList.add("filtered"));
+
+		Array.from(node.children)
+			.filter(todo => todo.textContent.toLowerCase().includes(term))
+			.forEach(todo => todo.classList.remove("filtered"));
 	};
 	const handleKeyPress = e => {
 		if (e.target.value !== "" && e.charCode === 13) {
@@ -39,7 +59,10 @@ const App = () => {
 		<div className="container">
 			<header className="text-center text-light my-4">
 				<h1 className="mb-4">Todo List</h1>
-				<SearchForm />
+				<SearchForm
+					setSearchToDo={setSearchToDo}
+					handleKeyPress={handleKeyPressSearch}
+				/>
 			</header>
 			<div className="wrapper">
 				<TodoForm
@@ -47,7 +70,7 @@ const App = () => {
 					handleKeyPress={handleKeyPress}
 					validateForm={validateForm}
 				/>
-				<Tasks data={todoList} deleteItem={deleteItem} />
+				<Tasks data={todoList} deleteItem={deleteItem} refer={todos} />
 			</div>
 		</div>
 	);

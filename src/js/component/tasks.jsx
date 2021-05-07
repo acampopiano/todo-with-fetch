@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 export const Tasks = props => {
 	return (
 		<>
-			<ul className="list-group list-group-item-action todos mx-auto text-light">
+			<ul
+				ref={props.refer}
+				className="list-group list-group-item-action todos mx-auto text-light">
 				{props.data
 					? props.data.map((item, i) => (
 							<li
@@ -25,5 +27,6 @@ export const Tasks = props => {
 
 Tasks.propTypes = {
 	data: PropTypes.array,
-	deleteItem: PropTypes.func
+	deleteItem: PropTypes.func,
+	refer: PropTypes.object
 };
