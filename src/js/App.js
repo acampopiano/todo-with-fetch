@@ -4,9 +4,6 @@ import { TodoForm } from "./component/todoform.jsx";
 import { Tasks } from "./component/tasks.jsx";
 //create your first component
 const App = () => {
-	const [addToDo, setAddToDo] = useState("");
-	const [delToDo, setDelToDo] = useState("");
-	const [searchToDo, setSearchToDo] = useState("");
 	const todos = useRef(null);
 	const [todoList, setTodoList] = useState([
 		{ label: "Pintar la casa", done: false },
@@ -27,7 +24,7 @@ const App = () => {
 
 	const handleKeyPressSearch = e => {
 		if (e.target.value !== "") {
-			const term = e.target.vallue.trim().toLowerCase();
+			const term = e.target.value.trim().toLowerCase();
 			filterTodo(term);
 		}
 	};
