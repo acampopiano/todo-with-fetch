@@ -16,7 +16,7 @@ const App = () => {
 				const responseJson = await response.json();
 				setTodoList(responseJson);
 			} catch (e) {
-				//console.error(e);
+				console.error(e);
 			}
 		};
 		fetchData();
