@@ -13,21 +13,11 @@ const App = () => {
 		{ label: "Lijar la puerta", done: false }
 	]);
 
-	const removeItem = (arr, item) => {
-		var index = arr.indexOf(item);
-		return [
-			// part of the array before the given item
-			...arr.slice(0, index),
-
-			// part of the array after the given item
-			...arr.slice(index + 1)
-		];
-	};
 	const deleteItem = e => {
 		const elementToDelete = e.previousElementSibling.textContent;
-		removeItem(todoList, elementToDelete);
+		let filter = todoList.filter(d => d.label !== elementToDelete);
+		setTodoList(filter);
 		e.parentElement.remove();
-		console.log(todoList);
 	};
 
 	const validateForm = e => {
