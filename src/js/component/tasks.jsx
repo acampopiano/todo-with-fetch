@@ -14,9 +14,9 @@ export const Tasks = props => {
 								<span
 									className={item.done ? "strikethrough" : ""}
 									onClick={e =>
-										props.setDoneItem(e.target.textContent)
+										props.setDoneItem(item.label, item.done)
 									}>
-									{item.label}
+									{item.label + "+" + item.done}
 								</span>
 								<span
 									className="delete"

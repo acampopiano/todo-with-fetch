@@ -22,15 +22,17 @@ const App = () => {
 		fetchData();
 	}, []);
 
-	const doneItem = e => {
-		const filter = todoList.filter(d => d.label !== e);
-		const filterToUpdate = todoList.filter(d => d.label === e);
-		filterToUpdate.map((item, i) => {
-			item.done = true;
-		});
-		const newToDoList = [...new Set([...filter, ...filterToUpdate])]; //   => remove duplication
-		setTodoList(newToDoList);
-		updateData(newToDoList);
+	const doneItem = (label, done) => {
+		if (!done) {
+			const filter = todoList.filter(d => d.label !== label);
+			const filterToUpdate = todoList.filter(d => d.label === label);
+			filterToUpdate.map((item, i) => {
+				item.done = true;
+			});
+			const newToDoList = [...new Set([...filter, ...filterToUpdate])]; //   => remove duplication
+			setTodoList(newToDoList);
+			updateData(newToDoList);
+		}
 	};
 
 	const deleteItem = e => {
