@@ -16,7 +16,7 @@ export const Tasks = props => {
 									onClick={e =>
 										props.setDoneItem(item.label, item.done)
 									}>
-									{item.label + "+" + item.done}
+									{item.label}
 								</span>
 								<span
 									className="delete"
