@@ -47,10 +47,8 @@ const App = () => {
 	};
 
 	const handleKeyUp = e => {
-		if (e.target.value !== "") {
-			const term = e.target.value.trim().toLowerCase();
-			filterTodo(term);
-		}
+		const term = e.target.value.trim().toLowerCase();
+		filterTodo(term);
 	};
 
 	// filter todos
